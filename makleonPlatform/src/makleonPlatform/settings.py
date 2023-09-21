@@ -40,8 +40,10 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'lessons',
-    'products.apps.Product',
+    'lessons.apps.LessonsConfig',
+    'products.apps.ProductsConfig',
+    'users.apps.UsersConfig',
+
 ]
 
 MIDDLEWARE = [
