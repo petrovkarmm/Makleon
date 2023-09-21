@@ -19,8 +19,7 @@ class Product(models.Model):
                                    verbose_name='Product description')
 
     owner = models.ForeignKey(User,
-                              on_delete=models.CASCADE,
-                              related_name='Product owner')
+                              on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
