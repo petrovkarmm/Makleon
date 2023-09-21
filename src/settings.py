@@ -23,9 +23,9 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'lessons',
-    'products',
-    'users',
+    'products.apps.ProductsConfig',
+    'lessons.apps.LessonsConfig',
+    'users.apps.UsersConfig',
 
 ]
 
