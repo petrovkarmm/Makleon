@@ -1,8 +1,7 @@
 import os
 from pathlib import Path
 
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 SECRET_KEY = 'django-insecure-o(7$65=805zw2ik(*a&xw!^8*s9-wpb4iv%m(!c3fnsh6^7!pz'
@@ -23,10 +22,9 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'products.apps.ProductsConfig',
-    'lessons.apps.LessonsConfig',
-    'users.apps.UsersConfig',
-
+    'products',
+    'lessons',
+    'users',
 ]
 
 MIDDLEWARE = [
