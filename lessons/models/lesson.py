@@ -8,6 +8,8 @@ class Lesson(models.Model):
     video_link = models.URLField(blank=True)
     duration = models.PositiveIntegerField(blank=True)
 
+    price = models.PositiveIntegerField(blank=True, default=0)
+
     products = models.ManyToManyField(Product, related_name='lessons')
 
     def __str__(self):

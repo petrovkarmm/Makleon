@@ -21,5 +21,7 @@ class Product(models.Model):
     owner = models.ForeignKey(User,
                               on_delete=models.CASCADE)
 
+    price = models.PositiveIntegerField(blank=True, default=0)
+
     def __str__(self):
         return self.name
