@@ -10,11 +10,11 @@ class Product(models.Model):
                           editable=False,
                           verbose_name='Product UUID')
 
-    name = models.CharField(max_length=25,
+    name = models.CharField(max_length=64,
                             blank=True,
                             verbose_name='Product name')
 
-    description = models.TextField(max_length=150,
+    description = models.TextField(max_length=128,
                                    blank=True,
                                    verbose_name='Product description')
 

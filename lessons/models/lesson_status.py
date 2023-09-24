@@ -7,7 +7,7 @@ from lessons.models.lesson import Lesson
 class LessonStatus(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User')
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, verbose_name='User lesson')
-    watched_time = models.IntegerField(default=0, verbose_name='Watched time')
+    watched_time = models.PositiveIntegerField(default=0, verbose_name='Watched time')
     is_watched = models.BooleanField(default=False, verbose_name='Is watched')
 
     def __str__(self):
