@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 
 from .views.product_list import ProductListAPIView
-from .views.product import ProductAPIView
+from .views.product_detail import ProductAPIView
 
 app_name = 'products'
 
