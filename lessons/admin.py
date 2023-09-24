@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models.lesson import Lesson
+from .models.lesson_status import LessonStatus
 
-# Register your models here.
+admin.site.register(Lesson)
+admin.site.register(LessonStatus)
