@@ -3,7 +3,7 @@ from products.models.product import Product
 from lessons.serializers.lesson_serializer import LessonSerializer
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class ProductListSerializer(serializers.ModelSerializer):
 
     lessons = LessonSerializer(many=True)
 
