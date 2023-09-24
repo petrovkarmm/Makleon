@@ -4,9 +4,13 @@ from lessons.serializers.lesson_serializer import LessonSerializer
 
 
 class ProductListSerializer(serializers.ModelSerializer):
-
     lessons = LessonSerializer(many=True)
+    link = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
-        fields = ('id', 'name', 'description', 'lessons')
+        fields = ('id', 'name', 'link', 'description', 'lessons')
+
+    def get_link(self, obj):
+        request = self.context.get('request')
+        return request.build_absolute_uri(f'/api/v1/product/{obj.id}')
