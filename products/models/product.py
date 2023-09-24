@@ -21,6 +21,8 @@ class Product(models.Model):
     owner = models.ForeignKey(User,
                               on_delete=models.CASCADE)
 
+    video_link = models.URLField(blank=True)
+
     price = models.PositiveIntegerField(blank=True, default=0)
 
     def __str__(self):
