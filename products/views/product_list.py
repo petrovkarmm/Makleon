@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from products.models.product import Product
 from products.serializers.product_list_serializer import ProductListSerializer
 from products.serializers.product_list_serializer_admin import ProductListSerializerAdmin
+from products.serializers.product_serializer import ProductSerializer
 
 
 class ProductListAPIView(APIView):
@@ -19,21 +20,14 @@ class ProductListAPIView(APIView):
 
     def post(self, request):
         self.permission_classes = [IsAdminUser]
+        current_user = request.user
         serializer = ProductListSerializerAdmin(data=request.data)
         if serializer.is_valid():
-            product = serializer.save(owner=request.user)
+            product = serializer.save(owner=current_user)
+            serializer_to_response = ProductSerializer(product)
             response_data = {
-                'name': product.name,
-                'description': product.description
+                'You create a product': serializer_to_response.data,
+                'Created by': current_user.username,
             }
             return Response(response_data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    # def patch(self, request, product_id):
-    #     self.permission_classes = [IsAdminUser]
-    #     product = get_object_or_404(Product, id=product_id)
-    #     serializer = ProductListSerializerAdmin(product, data=request.data, partial=True)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data, status=status.HTTP_200_OK)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
