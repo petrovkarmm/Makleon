@@ -10,9 +10,9 @@ class ProductAccess(models.Model):
                              verbose_name='User accesses to lesson')
 
     lesson = models.ForeignKey(Lesson,
-                                on_delete=models.CASCADE,
-                                related_name='user_lesson_accesses',
-                                verbose_name='Lesson accesses to user')
+                               on_delete=models.CASCADE,
+                               related_name='user_lesson_accesses',
+                               verbose_name='Lesson accesses to user')
 
     lesson_get_date = models.DateTimeField(auto_now_add=True)
 
