@@ -26,4 +26,4 @@ class Product(models.Model):
     price = models.PositiveIntegerField(blank=True, default=0)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} - ID: {self.id}'
