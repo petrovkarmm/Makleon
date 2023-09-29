@@ -19,15 +19,16 @@ class ProductListAPIView(APIView):
         return Response({'products': serializer.data})
 
     def post(self, request):
-        self.permission_classes = [IsAdminUser]
-        current_user = request.user
-        serializer = ProductListSerializerAdmin(data=request.data)
-        if serializer.is_valid():
-            product = serializer.save(owner=current_user)
-            serializer_to_response = ProductSerializer(product)
-            response_data = {
-                'You create a product': serializer_to_response.data,
-                'Created by': current_user.username,
-            }
-            return Response(response_data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if request.user.is_superuser:
+            current_user = request.user
+            serializer = ProductListSerializerAdmin(data=request.data)
+            if serializer.is_valid():
+                product = serializer.save(owner=current_user)
+                serializer_to_response = ProductSerializer(product)
+                response_data = {
+                    'You create a product': serializer_to_response.data,
+                    'Created by': current_user.username,
+                }
+                return Response(response_data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
