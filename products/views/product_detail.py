@@ -27,3 +27,17 @@ class ProductAPIView(APIView):
             }
             return Response(response_data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, product_id):
+        self.permission_classes = [IsAdminUser]
+        product = get_object_or_404(Product, id=product_id)
+        if product:
+            response_data = {
+                'deleted product info': {
+                    'product id': product.id,
+                    'product name': product.name
+                }
+            }
+            product.delete()
+            return Response(response_data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
